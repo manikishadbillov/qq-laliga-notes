@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>西甲直播 · 杂志专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f9fc;
+            color: #1a2a3a;
+            line-height: 1.6;
+            padding: 0 1rem 2.5rem;
+        }
+
+        .wrapper {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        /* 首页横幅 hero */
+        .hero {
+            position: relative;
+            margin: 1.8rem 0 2.8rem;
+            padding: 3.5rem 2rem 3rem;
+            background: linear-gradient(145deg, #0f3b4a 0%, #1d606b 100%);
+            border-radius: 2rem;
+            box-shadow: 0 12px 28px rgba(20, 80, 90, 0.18);
+            color: #e6f2f5;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero::after {
+            content: "⚽";
+            position: absolute;
+            bottom: -1.2rem;
+            right: -0.2rem;
+            font-size: 8rem;
+            opacity: 0.08;
+            transform: rotate(10deg);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 560px;
+            margin: 0 auto 1.4rem;
+            opacity: 0.9;
+        }
+
+        .hero .label-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(2px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #d0e9ef;
+        }
+
+        /* 网格卡片系统 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+            margin: 2.6rem 0 2.2rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid .card:first-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.6rem 1.6rem;
+            box-shadow: 0 6px 20px rgba(0, 30, 40, 0.05);
+            border: 1px solid rgba(40, 120, 130, 0.08);
+            transition: box-shadow 0.2s ease, transform 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 28px rgba(30, 100, 110, 0.10);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #115463;
+            border-left: 4px solid #2f8b9b;
+            padding-left: 0.7rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .card p {
+            font-size: 0.97rem;
+            color: #2e4353;
+            margin-bottom: 0.6rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .accent-badge {
+            display: inline-block;
+            background: #d8eef3;
+            color: #0a424f;
+            border-radius: 30px;
+            padding: 0.15rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* 专题说明块 — 背景说明 / 延伸阅读感 */
+        .feature-block {
+            background: #eaf3f7;
+            border-radius: 2rem;
+            padding: 2rem 1.8rem;
+            margin: 1.8rem 0 2rem;
+            border: 1px solid #b6d3db;
+        }
+
+        .feature-block h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #094652;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .feature-block h2 span {
+            background: #2b7a88;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.15rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        .feature-block p {
+            margin-bottom: 1rem;
+        }
+
+        .feature-block .small-quote {
+            font-size: 0.9rem;
+            border-left: 3px solid #40818f;
+            padding-left: 1.2rem;
+            color: #1e5764;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 0 0.6rem 0.6rem 0;
+        }
+
+        /* 页尾提示 */
+        .footer-note {
+            margin: 2.8rem 0 1rem;
+            text-align: center;
+            border-top: 1px solid #c5dae2;
+            padding-top: 2.2rem;
+        }
+
+        .footer-note p {
+            font-size: 0.96rem;
+            color: #2b5a68;
+            max-width: 560px;
+            margin: 0 auto 0.6rem;
+        }
+
+        .footer-note .btn-outline {
+            display: inline-block;
+            margin: 0.6rem 0.4rem;
+            background: transparent;
+            border: 1.5px solid #2b7a88;
+            color: #115463;
+            padding: 0.6rem 1.6rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .footer-note .btn-outline:hover {
+            background: #115463;
+            color: white;
+        }
+
+        /* 常见问题摘要 (FAQ 风格) */
+        .faq-mini {
+            margin: 2.2rem 0 1rem;
+        }
+
+        .faq-mini details {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 0.8rem 1.4rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid #c7dee6;
+            transition: 0.1s;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #0b4d5b;
+            cursor: pointer;
+            font-size: 0.98rem;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini details p {
+            margin-top: 0.5rem;
+            color: #2b4e5b;
+            font-size: 0.9rem;
+            padding-left: 0.3rem;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #aac7d2, transparent);
+            margin: 2rem 0;
+        }
+
+        a {
+            color: #126d7e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+        }
+
+        a:hover {
+            color: #05343f;
+        }
+
+        /* 移动端精细调整 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .hero {
+                padding: 2.2rem 1.2rem 2rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- hero 区域 -->
+    <div class="hero">
+        <h1>🏟️ 西甲 · 杂志</h1>
+        <p>每个比赛日，都是生活的延长线。从赛程查询到赛后漫谈，这里陪你一起关注西甲。</p>
+        <span class="label-tag">⚡ 实时 · 回看 · 资讯</span>
+    </div>
+
+    <!-- 背景说明 + 三段自然介绍 (杂志感) -->
+    <div class="feature-block">
+        <h2>📰 从日常到看台 <span>专题</span></h2>
+        <p>西甲从来不只是周末九十分钟的事。通勤路上翻翻积分榜，午休时和同事争论巴萨与皇马的状态，深夜打开手机确认一下进球——这些细碎时刻构成了我们与足球的真实联系。而「西甲直播」恰好是这样一个聚合日常线索的地方：赛历、数据、阵容变动，你随时可以回来对照一两眼。</p>
+        <p>很多人习惯在赛前先快速过一遍双方近期走势，或者在赛后翻看关键统计。这种查询不需要太重的仪式感，一个干净、能直奔主题的页面反而更顺手。这个站点就把这些内容都放到了台面上，没有多余的花哨。</p>
+        <div class="small-quote">
+            ⚽ 延伸阅读：比如想查某支球队的客场战绩、某个新援的出场时间，又或者只是想确认一下下一轮德比的时间——这些都能在页面里直接找到入口。<br>
+            而当你只是想随便看看最近有哪些焦点战，首页的卡片也能给一个快速预览。
+        </div>
+    </div>
+
+    <!-- 网格卡片: 三段介绍 + 特点 -->
+    <div class="grid">
+        <div class="card">
+            <h3>📋 赛程 · 随时对照</h3>
+            <p>无论是刚结束的加泰德比，还是下周的马德里德比，每一轮的比赛时间、对阵、场地都会清晰列出。你可以把它当成一份动态日历，根据日期规划自己的看球节奏。</p>
+            <p><span class="accent-badge">最近更新</span> 涵盖西甲全部20支球队的完整赛程，并实时同步延期或调整信息。</p>
+        </div>
+
+        <div class="card">
+            <h3>📊 数据 · 扫一眼就够</h3>
+            <p>积分榜、射手榜、助攻榜——这些基本盘被放在显眼位置，不用翻好几层菜单。如果你突然想知道某位前锋这赛季进了几个头球，或者哪支球队的客场防守最好，直接横向对比就行。</p>
+        </div>
+
+        <div class="card">
+            <h3>🧩 延伸 · 不止看球</h3>
+            <p>除了比赛本身，这里还聚合了球队新闻、转会流言、赛后评论的摘要链接。适合那些不只想看比分，还想知道场外发生了什么的球迷。把页面当成一个起点，点进去慢慢读。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 与 场景提示 混合 -->
+    <div class="faq-mini">
+        <details>
+            <summary>📌 日常怎么用这个站点？</summary>
+            <p>很多用户会把它设成浏览器标签页之一：周三晚上打开看看周中是否有补赛，周五扫一眼周末裁判安排，赛后第二天再回来看集锦或战报。不需要登录或注册，直接打开就是最新内容。</p>
+        </details>
+        <details>
+            <summary>📌 和别的西甲网站有什么不同？</summary>
+            <p>它更偏向“工具+轻阅读”的定位。没有弹窗广告，没有需要关闭的浮层；信息密度适中，适合手机快速操作。同时保留了杂志式的图文节奏，不至于枯燥。</p>
+        </details>
+    </div>
+
+    <hr>
+
+    <!-- 页尾访问提示 + 必含链接 -->
+    <div class="footer-note">
+        <p>如果你也习惯在比赛日前后顺手查一下赛程和数据，可以把这个页面收进收藏夹。<br>
+        不论你是想看看下一场国家德比的时间，还是单纯想感受一下西甲的氛围，直接前往 <a href="https://qq-laliga.com">西甲直播</a> 就能找到所有内容。</p>
+
+        <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7; color: #3b6a78;">
+            一个聚焦西甲的信息聚合 · 手机友好 · 无过度设计
+        </p>
+    </div>
+</div>
+</body>
+</html>
